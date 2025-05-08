@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Barang;
 use App\Models\BarangKeluar;
+use App\Models\Book;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
@@ -35,6 +36,9 @@ class BarangKeluarController extends Controller
         $no = substr($nomor, -3, 3);
         $nourut = (int)$no + 1;
         $kode =  "T-BK-" .date('ymd'). sprintf("%05s", $nourut);
+
+        // $book = Book::all();
+        // dd($book);
 
         $barang = Barang::all();
 
