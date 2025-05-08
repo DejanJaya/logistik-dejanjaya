@@ -1,0 +1,114 @@
+composer create-project Laravel/laravel=v10.0.4 belajar-laravel
+composer create-project "laravel/laravel:^10.0" example-app
+composer create-project laravel/laravel:^9.0 example-app
+composer create-project laravel/laravel:^8.0 example-app
+composer create-project --prefer-dist laravel/laravel=^8.0 larashop
+
+composre require Laravel/ui
+
+php artisan ui bootstrap --auth
+npm install && npm run build
+
+Laravel 11 collation = utf8mb4_unicode_ci
+
+composer require yajra/laravel-datatables:"^10.0"
+di config/app.php -> providers: Yajra\DataTables\DataTablesServiceProvider::class,
+php artisan vendor:publish --tag=datatables
+
+https://github.com/barryvdh/laravel-dompdf
+composer require barryvdh/laravel-dompdf:^3.0
+use Barryvdh\DomPDF\Facade\Pdf;
+$data = $data->get();
+        if($request->get('export') == 'pdf'){
+            $pdf = Pdf::loadView('pdf.assets', ['data' => $data]);
+            return $pdf->stream('Data Assets.pdf');
+        }
+{{ route('admin.assets') }}?export=pdf
+
+https://docs.laravel-excel.com/3.1/getting-started/installation.html
+composer require maatwebsite/excel
+composer require "maatwebsite/excel:^3.1"
+di config/app.php -> providers: Maatwebsite\Excel\ExcelServiceProvider::class,
+di config/app.php -> aliases: 'Excel' => Maatwebsite\Excel\Facades\Excel::class,
+php artisan vendor:publish --provider="Maatwebsite\Excel\ExcelServiceProvider" --tag=config
+php artisan make:import UserImport
+use Excel;
+
+php artisan migrate
+php artisan make:migration create_books_table
+
+php artisan key:generate
+
+php artisan make:factory TransactionFactory
+
+php artisan make:seeder AdministratorSeeder
+php artisan db:seed --class=UserSeeder
+php artisan db:seed
+
+php artisan make:request Transaction/Store
+
+//breeze
+composer require laravel/breeze:2 --dev
+php artisan breeze:install
+
+// s3 amazon
+composer require league/flysystem-aws-s3-v3 "^3.0"
+php artisan make:controller FileUploaderController -i
+
+Access Key: PQIDXSBCGRPCJ7A0UJNT
+Secret Key: H7bXAEf3FLRx6DysnVToZXelo9UZqgZNCm0kxGJ7
+
+AWS_ACCESS_KEY_ID=PQIDXSBCGRPCJ7A0UJNT
+AWS_SECRET_ACCESS_KEY=H7bXAEf3FLRx6DysnVToZXelo9UZqgZNCm0kxGJ7
+AWS_DEFAULT_REGION="ID"
+AWS_BUCKET=dejanbucket-1
+AWS_USE_PATH_STYLE_ENDPOINT=true
+AWS_ENDPOINT=https://s3.nevaobjects.id
+AWS_URL="https://s3.nevaobjects.id/dejanbucket-1"
+
+composer require twilio/sdk=v8.2.2
+
+-- perintah redis
+aktifkan redis
+sudo service redis-server start
+password :123
+redis-cli
+ping
+set mahasiswa "nama"
+get  mahasiswa
+keys * => melihat data apa saja pada redis
+keys mahasiswa*
+expire siswa 60
+exists siswa
+del siswa => del database/key
+select 0 => pilih database
+move siswa 1 => memindah ke db1
+flushdb => menghapus database
+mset buah "apel" minuman "susu" makanan "roti" => membuat db skaligus dengan isi
+rename pesan salam => rubah nama db
+
+--perintah lumen
+composer create-project --prefer-dist laravel/lumen MyApp
+php -S localhost:8000 -t public
+php artisan make:migration create_posts_table
+
+-- install filament
+composer require filament/filament:"^3.2.52" -W
+composer require livewire/livewire:3.4.9
+ 
+php artisan filament:install --panels
+
+php artisan make:filament-user
+
+untuk membuat crud filament
+php artisan make:filament-resource City
+php artisan make:filament-resource Transaction --generate
+
+composer require filament/widgets:"^3.2" -W
+php artisan filament:install --widgets
+php artisan make:filament-widget WaitingTransactions --table
+
+//jwt
+composer require tymon/jwt-auth
+php artisan vendor:publish --provider="Tymon\JWTAuth\Providers\LaravelServiceProvider"
+php artisan jwt:secret
